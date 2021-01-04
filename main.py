@@ -1,32 +1,25 @@
+"""TODO: add description here."""
+
 import pygame
 import assets
+import view
 
+
+# pylint: disable=W0511
+# pylint: disable=E1101
+# TODO: delete this line
 
 class Main:
+    """TODO: add description here."""
 
     @staticmethod
     def main():
-        print("Hello")
-        assets.Assets.load()
-
+        """TODO: add description here."""
         pygame.init()
+        assets.Images.load()
 
-        screen_size = (454, 504)
-        screen = pygame.display.set_mode(screen_size)
-        screen.blit(assets.Assets.BACKGROUND_IMAGE, (0, 0))
-
-        pygame.display.set_caption("TIC TAC TOE GAME")
-
-        clock = pygame.time.Clock()
-
-        running = True
-
-        while running:
-            pygame.display.flip()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-            clock.tick(60)
+        main_window = view.Window()
+        main_window.run()
 
 
 if __name__ == "__main__":

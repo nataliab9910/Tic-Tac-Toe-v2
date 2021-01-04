@@ -1,14 +1,21 @@
+"""TODO: add description here."""
+
 import pygame
 
+# pylint: disable=W0511
+# pylint: disable=E1101
+# TODO: delete this line
 
-class Assets:
 
-    BACKGROUND_IMAGE = None
-    O_IMAGE = None
-    X_IMAGE = None
+class Images:
+    """TODO: add description here."""
+    BACKGROUND = None
+    O_CHECKER = None
+    X_CHECKER = None
 
     @staticmethod
     def load():
-        Assets.BACKGROUND_IMAGE = pygame.image.load('assets/background.png')
-        Assets.O_IMAGE = pygame.image.load('assets/O.png')
-        Assets.X_IMAGE = pygame.image.load('assets/X.png')
+        """TODO: add description here."""
+        Images.BACKGROUND = pygame.image.load('assets/background.png')
+        Images.O_CHECKER = pygame.image.load('assets/O.png')
+        Images.X_CHECKER = pygame.image.load('assets/X.png')
