@@ -1,21 +1,33 @@
 import pygame
+import assets
 
-print("Hello")
 
-pygame.init()
+class Main:
 
-screen_size = (600, 600)
-screen = pygame.display.set_mode(screen_size)
-screen.fill(pygame.Color("white"))
+    @staticmethod
+    def main():
+        print("Hello")
+        assets.Assets.load()
 
-pygame.display.set_caption("TIC TAC TOE GAME")
+        pygame.init()
 
-clock = pygame.time.Clock()
+        screen_size = (454, 504)
+        screen = pygame.display.set_mode(screen_size)
+        screen.blit(assets.Assets.BACKGROUND_IMAGE, (0, 0))
 
-running = True
+        pygame.display.set_caption("TIC TAC TOE GAME")
 
-while running:
-    pygame.display.flip()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+        clock = pygame.time.Clock()
+
+        running = True
+
+        while running:
+            pygame.display.flip()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+            clock.tick(60)
+
+
+if __name__ == "__main__":
+    Main.main()
