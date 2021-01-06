@@ -10,18 +10,19 @@ import controller
 
 class Main:
     """TODO: add description here."""
+    def __init__(self):
+        self.controller = controller.Controller()
 
-    @staticmethod
-    def main():
+    def main(self):
         """TODO: add description here."""
         pygame.init()  # move to view?
 
-        main_controller = controller.Controller()
-        main_controller.run()
+        self.controller.run()
 
         # main_window = view.Window()
         # main_window.run()
 
 
 if __name__ == "__main__":
-    Main.main()
+    main_method = Main()
+    main_method.main()

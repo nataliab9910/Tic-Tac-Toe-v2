@@ -11,16 +11,16 @@ import constants
 
 class Assets:
     """TODO: add description here."""
-    BACKGROUND = None
-    O_CHECKER = None
-    X_CHECKER = None
+    BACKGROUND_IMG = None
+    O_CHECKER_IMG = None
+    X_CHECKER_IMG = None
 
     @staticmethod
     def load():
         """TODO: add description here."""
-        Assets.BACKGROUND = pygame.image.load('assets/background.png')
-        Assets.O_CHECKER = pygame.image.load('assets/O.png')
-        Assets.X_CHECKER = pygame.image.load('assets/X.png')
+        Assets.BACKGROUND_IMG = pygame.image.load('assets/background.png')
+        Assets.O_CHECKER_IMG = pygame.image.load('assets/O.png')
+        Assets.X_CHECKER_IMG = pygame.image.load('assets/X.png')
 
 
 class Window:
@@ -32,7 +32,7 @@ class Window:
         pygame.display.set_caption(constants.GAME_TITLE)
         self.surface = pygame.display.set_mode((constants.SURFACE_WIDTH,
                                                 constants.BOARD_HEIGHT + constants.TEXT_AREA_HEIGHT))
-        self.surface.blit(Assets.BACKGROUND, (0, 0))
+        self.surface.blit(Assets.BACKGROUND_IMG, (0, 0))
         self.clock = pygame.time.Clock()
         self.controller = controller
 
@@ -46,21 +46,19 @@ class Window:
                 return False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 click_position = pygame.mouse.get_pos()
-                choosen_field = self.calculate_field_number(click_position)
-                if choosen_field != constants.WRONG:
-                    self.controller.add_checker(choosen_field)
+                self.controller.mouse_click_handle(click_position)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     pygame.quit()
                     return False
                 if event.key == pygame.K_r:
-                    pass
+                    self.controller.reset()
 
         self.clock.tick(60)
         return True
 
     def add_checker(self, field, player):
-        self.surface.blit({constants.PLAYER_1: Assets.O_CHECKER, constants.PLAYER_2: Assets.X_CHECKER}[player],
+        self.surface.blit({constants.PLAYER_1: Assets.O_CHECKER_IMG, constants.PLAYER_2: Assets.X_CHECKER_IMG}[player],
                           constants.FIELDS_COORDINATES[field])
 
     @staticmethod
@@ -70,6 +68,9 @@ class Window:
             if position[0] in range(*field_range["x_axis"]) and position[1] in range(*field_range["y_axis"]):
                 return field
         return constants.WRONG
+
+    def reset(self):
+        self.surface.blit(Assets.BACKGROUND_IMG, (0, 0))
 
 
 class Instruction:
