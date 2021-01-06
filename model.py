@@ -5,8 +5,14 @@ class Field:
     def __init__(self):
         self.value = constants.NO_PLAYER
 
-    # put checker
-    # check if empty
+    def put_checker(self, player):
+        self.value = player
+
+    def is_empty(self):
+        return not self.value == constants.NO_PLAYER
+
+    def reset(self):
+        self.value = constants.NO_PLAYER
 
 
 class Logic:
@@ -30,6 +36,15 @@ class Logic:
     def flip_current_player(self):
         self.current_player = {constants.PLAYER_1: constants.PLAYER_2,
                                constants.PLAYER_2: constants.PLAYER_1}[self.current_player]
+
+    def check_if_can_be_added(self, field):
+        if self.board[field].value == constants.NO_PLAYER:
+            self.board[field].value = self.current_player
+            return True
+        return False
+
+    def evaluate_board(self):
+        pass
 
 
 if __name__ == "__main__":

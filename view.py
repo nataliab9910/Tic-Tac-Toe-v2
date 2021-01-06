@@ -36,31 +36,43 @@ class Window:
         self.clock = pygame.time.Clock()
         self.controller = controller
 
-    def run(self):
+    def wait_for_events(self):
         """TODO: add description here."""
-        running = True
 
-        print(constants.FIELDS_COORDINATES)
-        print(constants.FIELDS_RANGES)
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                return False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                click_position = pygame.mouse.get_pos()
+                choosen_field = self.calculate_field_number(click_position)
+                if choosen_field != constants.WRONG:
+                    self.controller.add_checker(choosen_field)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    return False
+                if event.key == pygame.K_r:
+                    pass
 
-        while running:
-            pygame.display.flip()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    print(pygame.mouse.get_pos())
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_q:
-                        running = False
-                    if event.key == pygame.K_r:
-                        pass
+        self.clock.tick(60)
+        return True
 
-            self.clock.tick(60)
+    def add_checker(self, field, player):
+        self.surface.blit({constants.PLAYER_1: Assets.O_CHECKER, constants.PLAYER_2: Assets.X_CHECKER}[player],
+                          constants.FIELDS_COORDINATES[field])
 
-    def add_checker(self):
-        pass
-        # check logic return
-        # if true put checker and change instruction // should get checker name?
-        # evaluate board
-        # if false do nothing
+    @staticmethod
+    def calculate_field_number(position):
+        for field in range(constants.NUMBER_OF_FIELDS):
+            field_range = constants.FIELDS_RANGES[field]
+            if position[0] in range(*field_range["x_axis"]) and position[1] in range(*field_range["y_axis"]):
+                return field
+        return constants.WRONG
+
+
+class Instruction:
+    def __init__(self, position):
+        self.text = "Ruch Kółka!"
+        self.position = position
