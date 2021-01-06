@@ -1,5 +1,6 @@
 """TODO: add description here."""
 
+# TODO: segregate imports
 import pygame
 import consts
 
@@ -11,6 +12,8 @@ import consts
 
 class Assets:
     """TODO: add description here."""
+    # pylint: disable=R0903
+    # TODO: delete this line
     BACKGROUND_IMG = None
     O_CHECKER_IMG = None
     X_CHECKER_IMG = None
@@ -25,9 +28,14 @@ class Assets:
 
 class Text:
     """TODO: add description here."""
-    INSTRUCTION = {consts.NO_PLAYER: "Kliknij tutaj, aby zagrać ponownie.", consts.PLAYER_1: "Ruch Kółka!",
+    # pylint: disable=R0903
+    # TODO: delete this line
+    INSTRUCTION = {consts.NO_PLAYER: "Kliknij tutaj, aby zagrać ponownie.",
+                   consts.PLAYER_1: "Ruch Kółka!",
                    consts.PLAYER_2: "Ruch Krzyżyka!"}
-    END_GAME = {consts.PLAYER_1: " Wygrywa Kółko! ", consts.PLAYER_2: " Wygrywa Krzyżyk! ", consts.DRAW: " Remis! "}
+    END_GAME = {consts.PLAYER_1: " Wygrywa Kółko! ",
+                consts.PLAYER_2: " Wygrywa Krzyżyk! ",
+                consts.DRAW: " Remis! "}
 
     SIZE_MEDIUM = 25
     SIZE_BIG = 32
@@ -88,6 +96,7 @@ class Window:
 
     @staticmethod
     def is_text_area_clicked(position):
+        """TODO: add description here."""
         if position[1] in range(consts.BOARD_HEIGHT, consts.BOARD_HEIGHT + consts.TEXT_AREA_HEIGHT):
             return True
         return False
@@ -97,6 +106,7 @@ class Window:
         self.surface.blit(Assets.BACKGROUND_IMG, (0, 0))
 
     def update_instruction(self, current_player=consts.PLAYER_1):
+        """TODO: add description here."""
         pygame.draw.rect(self.surface, Text.BACKGROUND_COLOR,
                          (0, consts.SURFACE_WIDTH, consts.BOARD_HEIGHT, consts.BOARD_HEIGHT + consts.TEXT_AREA_HEIGHT))
         text = Text.INSTRUCTION[current_player]
@@ -104,11 +114,13 @@ class Window:
         pygame.display.flip()
 
     def end_game_text(self, result):
+        """TODO: add description here."""
         text = Text.END_GAME[result]
         self.draw_text(text, Text.SIZE_BIG, consts.BOARD_CENTER)
         pygame.display.flip()
 
     def draw_text(self, text, size, position_center):
+        """TODO: add description here."""
         font = pygame.font.Font(Text.FONT_NAME, size)
         text = font.render(text, False, Text.COLOR, Text.BACKGROUND_COLOR)
         text_rect = text.get_rect(center=position_center)

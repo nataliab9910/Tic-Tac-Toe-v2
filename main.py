@@ -10,17 +10,16 @@ import controller
 
 class Main:
     """TODO: add description here."""
+    # pylint: disable=R0903
+    # TODO: delete this line
     def __init__(self):
         self.controller = controller.Controller()
 
     def main(self):
         """TODO: add description here."""
-        pygame.init()  # move to view?
+        pygame.init()
         pygame.font.init()
         self.controller.run()
-
-        # main_window = view.Window()
-        # main_window.run()
 
 
 if __name__ == "__main__":

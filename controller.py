@@ -48,6 +48,7 @@ class Controller:
             self.evaluate_game_state()
 
     def evaluate_game_state(self):
+        """TODO: add description here."""
         self.game_result = self.logic.evaluate_board()
         if self.game_result == consts.NO_PLAYER:
             current_player = self.logic.flip_current_player()
@@ -56,7 +57,6 @@ class Controller:
             current_player = self.logic.unset_current_player()
             self.window.update_instruction(current_player)
             self.window.end_game_text(self.game_result)
-
 
     def reset_game(self):
         """TODO: add description here."""

@@ -76,7 +76,8 @@ class Logic:
         """TODO: add description here."""
         for i in range(consts.FIELDS_IN_COLUMN):
             column_number = consts.FIELDS_IN_COLUMN
-            if self.board[i].value == self.board[column_number + i].value == self.board[2 * column_number + i].value != consts.NO_PLAYER:
+            if self.board[i].value == self.board[column_number + i].value == \
+                    self.board[2 * column_number + i].value != consts.NO_PLAYER:
                 return self.board[i].value
         return consts.NO_PLAYER
 
@@ -84,7 +85,8 @@ class Logic:
         """TODO: add description here."""
         for i in range(consts.FIELDS_IN_ROW):
             row_number = consts.FIELDS_IN_ROW * i
-            if self.board[row_number].value == self.board[row_number + 1].value == self.board[row_number + 2].value != consts.NO_PLAYER:
+            if self.board[row_number].value == self.board[row_number + 1].value == \
+                    self.board[row_number + 2].value != consts.NO_PLAYER:
                 return self.board[row_number].value
         return consts.NO_PLAYER
 
@@ -104,6 +106,7 @@ class Logic:
         return consts.DRAW
 
     def unset_current_player(self):
+        """TODO: add description here."""
         self.current_player = consts.NO_PLAYER
         return self.current_player
 
@@ -113,8 +116,3 @@ class Logic:
             field.reset()
         self.current_player = consts.PLAYER_1
 
-
-if __name__ == "__main__":
-    # TODO: delete this statement
-    logic = Logic()
-    logic.print_board()
