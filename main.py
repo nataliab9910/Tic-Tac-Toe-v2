@@ -16,7 +16,7 @@ class Main:
     def main(self):
         """TODO: add description here."""
         pygame.init()  # move to view?
-
+        pygame.font.init()
         self.controller.run()
 
         # main_window = view.Window()

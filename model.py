@@ -1,30 +1,44 @@
-import constants
+"""TODO: add description here."""
+
+# pylint: disable=W0511
+# pylint: disable=E1101
+# TODO: delete this line
+
+import consts
 
 
 class Field:
+    """TODO: add description here."""
     def __init__(self):
-        self.value = constants.NO_PLAYER
+        """TODO: add description here."""
+        self.value = consts.NO_PLAYER
 
     def put_checker(self, player):
+        """TODO: add description here."""
         self.value = player
 
     def is_empty(self):
-        return self.value == constants.NO_PLAYER
+        """TODO: add description here."""
+        return self.value == consts.NO_PLAYER
 
     def reset(self):
-        self.value = constants.NO_PLAYER
+        """TODO: add description here."""
+        self.value = consts.NO_PLAYER
 
 
 class Logic:
+    """TODO: add description here."""
     BOARD = [Field(), Field(), Field(),
              Field(), Field(), Field(),
              Field(), Field(), Field()]
 
     def __init__(self):
+        """TODO: add description here."""
         self.board = Logic.BOARD[:]
-        self.current_player = constants.PLAYER_1
+        self.current_player = consts.PLAYER_1
 
     def print_board(self):
+        """TODO: add description here."""
         # TODO: delete this function
         for i in range(3):
             print(f' {self.board[3 * i].value} | '
@@ -34,57 +48,70 @@ class Logic:
                 print('---+---+---')
 
     def flip_current_player(self):
-        self.current_player = {constants.PLAYER_1: constants.PLAYER_2,
-                               constants.PLAYER_2: constants.PLAYER_1}[self.current_player]
+        """TODO: add description here."""
+        self.current_player = {consts.PLAYER_1: consts.PLAYER_2,
+                               consts.PLAYER_2: consts.PLAYER_1}[self.current_player]
+        return self.current_player
 
     def check_if_can_be_added(self, field):
-        if self.board[field].value == constants.NO_PLAYER:
+        """TODO: add description here."""
+        if self.board[field].value == consts.NO_PLAYER:
             self.board[field].value = self.current_player
             return True
         return False
 
     def evaluate_board(self):
+        """TODO: add description here."""
         result = self.check_columns()
-        if result == constants.NO_PLAYER:
+        if result == consts.NO_PLAYER:
             result = self.check_rows()
-            if result == constants.NO_PLAYER:
+            if result == consts.NO_PLAYER:
                 result = self.check_diagonals()
-                if result == constants.NO_PLAYER:
+                if result == consts.NO_PLAYER:
                     result = self.check_draw()
 
         return result
 
     def check_columns(self):
-        for i in range(constants.FIELDS_IN_COLUMN):
-            column_number = constants.FIELDS_IN_COLUMN
-            if self.board[i].value == self.board[column_number + i].value == self.board[2 * column_number + i].value != constants.NO_PLAYER:
+        """TODO: add description here."""
+        for i in range(consts.FIELDS_IN_COLUMN):
+            column_number = consts.FIELDS_IN_COLUMN
+            if self.board[i].value == self.board[column_number + i].value == self.board[2 * column_number + i].value != consts.NO_PLAYER:
                 return self.board[i].value
-        return constants.NO_PLAYER
+        return consts.NO_PLAYER
 
     def check_rows(self):
-        for i in range(constants.FIELDS_IN_ROW):
-            row_number = constants.FIELDS_IN_ROW * i
-            if self.board[row_number].value == self.board[row_number + 1].value == self.board[row_number + 2].value != constants.NO_PLAYER:
+        """TODO: add description here."""
+        for i in range(consts.FIELDS_IN_ROW):
+            row_number = consts.FIELDS_IN_ROW * i
+            if self.board[row_number].value == self.board[row_number + 1].value == self.board[row_number + 2].value != consts.NO_PLAYER:
                 return self.board[row_number].value
-        return constants.NO_PLAYER
+        return consts.NO_PLAYER
 
     def check_diagonals(self):
-        if self.board[0].value == self.board[4].value == self.board[8].value != constants.NO_PLAYER:
+        """TODO: add description here."""
+        if self.board[0].value == self.board[4].value == self.board[8].value != consts.NO_PLAYER:
             return self.board[0].value
-        elif self.board[2].value == self.board[4].value == self.board[6].value != constants.NO_PLAYER:
+        if self.board[2].value == self.board[4].value == self.board[6].value != consts.NO_PLAYER:
             return self.board[2].value
-        return constants.NO_PLAYER
+        return consts.NO_PLAYER
 
     def check_draw(self):
+        """TODO: add description here."""
         for field in self.board:
             if field.is_empty():
-                return constants.NO_PLAYER
-        return constants.DRAW
+                return consts.NO_PLAYER
+        return consts.DRAW
+
+    def unset_current_player(self):
+        self.current_player = consts.NO_PLAYER
+        return self.current_player
 
     def reset(self):
+        """TODO: add description here."""
         for field in self.board:
             field.reset()
-        self.current_player = constants.PLAYER_1
+        self.current_player = consts.PLAYER_1
 
 
 if __name__ == "__main__":
