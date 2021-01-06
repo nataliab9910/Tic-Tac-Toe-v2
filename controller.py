@@ -44,7 +44,6 @@ class Controller:
         if possible_to_add:
             player = self.logic.current_player
             self.window.add_checker(field, player)
-            self.logic.print_board()
             self.evaluate_game_state()
 
     def evaluate_game_state(self):

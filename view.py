@@ -104,6 +104,7 @@ class Window:
     def reset(self):
         """TODO: add description here."""
         self.surface.blit(Assets.BACKGROUND_IMG, (0, 0))
+        self.update_instruction()
 
     def update_instruction(self, current_player=consts.PLAYER_1):
         """TODO: add description here."""
