@@ -1,8 +1,7 @@
 """TODO: add description here."""
 
 import pygame
-import assets
-import view
+import controller
 
 
 # pylint: disable=W0511
@@ -15,11 +14,13 @@ class Main:
     @staticmethod
     def main():
         """TODO: add description here."""
-        pygame.init()
-        assets.Images.load()
+        pygame.init()  # move to view?
 
-        main_window = view.Window()
-        main_window.run()
+        main_controller = controller.Controller()
+        main_controller.run()
+
+        # main_window = view.Window()
+        # main_window.run()
 
 
 if __name__ == "__main__":
