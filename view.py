@@ -68,7 +68,7 @@ class Window:
                 return False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 click_position = pygame.mouse.get_pos()
-                self.controller.mouse_click_handle(click_position)
+                self.controller.mouse_click(click_position)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     pygame.quit()
@@ -88,18 +88,20 @@ class Window:
     @staticmethod
     def calculate_field_number(position):
         """TODO: add description here."""
+        if position[1] in range(consts.BOARD_HEIGHT, consts.SURFACE_HEIGHT):
+            return consts.TEXT_AREA
         for field in range(consts.NUMBER_OF_FIELDS):
             field_range = consts.FIELDS_RANGES[field]
             if position[0] in range(*field_range["x_axis"]) and position[1] in range(*field_range["y_axis"]):
                 return field
         return consts.WRONG
 
-    @staticmethod
-    def is_text_area_clicked(position):
-        """TODO: add description here."""
-        if position[1] in range(consts.BOARD_HEIGHT, consts.SURFACE_HEIGHT):
-            return True
-        return False
+    # @staticmethod
+    # def is_text_area_clicked(position):
+    #     """TODO: add description here."""
+    #     if position[1] in range(consts.BOARD_HEIGHT, consts.SURFACE_HEIGHT):
+    #         return True
+    #     return False
 
     def reset(self):
         """TODO: add description here."""

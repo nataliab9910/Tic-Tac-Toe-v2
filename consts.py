@@ -1,4 +1,8 @@
+"""TODO: add description here."""
+
+# pylint: disable=C0301,W0511
 # TODO: refactor this file
+
 GAME_TITLE = 'TIC-TAC-TOE Game!'
 
 BOARD_HEIGHT = 454
@@ -16,6 +20,7 @@ FIELDS_IN_COLUMN = FIELDS_IN_ROW = 3
 NUMBER_OF_FIELDS = FIELDS_IN_COLUMN * FIELDS_IN_ROW
 
 NO_PLAYER, PLAYER_1, PLAYER_2, DRAW = range(4)
+TEXT_AREA = 9
 WRONG = -1
 
 # @formatter:off
