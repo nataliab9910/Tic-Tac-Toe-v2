@@ -9,6 +9,7 @@ import consts
 
 class Field:
     """TODO: add description here."""
+
     def __init__(self):
         """TODO: add description here."""
         self.value = consts.NO_PLAYER
@@ -28,13 +29,12 @@ class Field:
 
 class Logic:
     """TODO: add description here."""
-    BOARD = [Field(), Field(), Field(),
-             Field(), Field(), Field(),
-             Field(), Field(), Field()]
 
     def __init__(self):
         """TODO: add description here."""
-        self.board = Logic.BOARD[:]
+        self.board = [Field(), Field(), Field(),
+                      Field(), Field(), Field(),
+                      Field(), Field(), Field()]
         self.current_player = consts.PLAYER_1
 
     def print_board(self):
@@ -53,7 +53,7 @@ class Logic:
                                consts.PLAYER_2: consts.PLAYER_1}[self.current_player]
         return self.current_player
 
-    def check_if_can_be_added(self, field):
+    def add_checker(self, field):
         """TODO: add description here."""
         if self.board[field].value == consts.NO_PLAYER:
             self.board[field].value = self.current_player
@@ -115,4 +115,3 @@ class Logic:
         for field in self.board:
             field.reset()
         self.current_player = consts.PLAYER_1
-

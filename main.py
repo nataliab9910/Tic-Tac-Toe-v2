@@ -15,7 +15,7 @@ class Main:
     def __init__(self):
         self.controller = controller.Controller()
 
-    def main(self):
+    def main_loop(self):
         """TODO: add description here."""
         pygame.init()
         pygame.font.init()
@@ -23,5 +23,5 @@ class Main:
 
 
 if __name__ == "__main__":
-    main_method = Main()
-    main_method.main()
+    main = Main()
+    main.main_loop()

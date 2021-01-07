@@ -50,12 +50,13 @@ class Window:
     def __init__(self, controller):
         """TODO: add description here."""
         Assets.load()
-        pygame.display.set_caption(consts.GAME_TITLE)
-        self.surface = pygame.display.set_mode((consts.SURFACE_WIDTH,
-                                                consts.BOARD_HEIGHT + consts.TEXT_AREA_HEIGHT))
-        self.surface.blit(Assets.BACKGROUND_IMG, (0, 0))
-        self.clock = pygame.time.Clock()
+        self.surface = pygame.display.set_mode((consts.SURFACE_WIDTH, consts.SURFACE_HEIGHT))
         self.controller = controller
+
+    def prepare_window(self):
+        pygame.display.set_caption(consts.GAME_TITLE)
+        self.surface.blit(Assets.BACKGROUND_IMG, (0, 0))
+        self.update_instruction()
 
     def wait_for_events(self):
         """TODO: add description here."""
@@ -75,7 +76,6 @@ class Window:
                 if event.key == pygame.K_r:
                     self.controller.reset_game()
 
-        self.clock.tick(60)
         return True
 
     def add_checker(self, field, player):
@@ -97,7 +97,7 @@ class Window:
     @staticmethod
     def is_text_area_clicked(position):
         """TODO: add description here."""
-        if position[1] in range(consts.BOARD_HEIGHT, consts.BOARD_HEIGHT + consts.TEXT_AREA_HEIGHT):
+        if position[1] in range(consts.BOARD_HEIGHT, consts.SURFACE_HEIGHT):
             return True
         return False
 
@@ -109,7 +109,7 @@ class Window:
     def update_instruction(self, current_player=consts.PLAYER_1):
         """TODO: add description here."""
         pygame.draw.rect(self.surface, Text.BACKGROUND_COLOR,
-                         (0, consts.SURFACE_WIDTH, consts.BOARD_HEIGHT, consts.BOARD_HEIGHT + consts.TEXT_AREA_HEIGHT))
+                         (0, consts.SURFACE_WIDTH, consts.BOARD_HEIGHT, consts.SURFACE_HEIGHT))
         text = Text.INSTRUCTION[current_player]
         self.draw_text(text, Text.SIZE_MEDIUM, consts.TEXT_AREA_CENTER)
         pygame.display.flip()
