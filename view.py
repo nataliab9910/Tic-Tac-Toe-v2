@@ -19,7 +19,7 @@ class Assets:
     X_CHECKER_IMG = None
 
     @staticmethod
-    def load():
+    def load_images():
         """TODO: add description here."""
         Assets.BACKGROUND_IMG = pygame.image.load('assets/background.png')
         Assets.O_CHECKER_IMG = pygame.image.load('assets/O.png')
@@ -30,11 +30,11 @@ class Text:
     """TODO: add description here."""
     # pylint: disable=R0903
     # TODO: delete this line
-    INSTRUCTION = {consts.NO_PLAYER: "Kliknij tutaj, aby zagrać ponownie.",
-                   consts.PLAYER_1: "Ruch Kółka!",
-                   consts.PLAYER_2: "Ruch Krzyżyka!"}
-    END_GAME = {consts.PLAYER_1: " Wygrywa Kółko! ",
-                consts.PLAYER_2: " Wygrywa Krzyżyk! ",
+    INSTRUCTIONS = {consts.NO_PLAYER: "Kliknij tutaj, aby zagrać ponownie.",
+                    consts.PLAYER_O: "Ruch Kółka!",
+                    consts.PLAYER_X: "Ruch Krzyżyka!"}
+    END_GAME = {consts.PLAYER_O: " Wygrywa Kółko! ",
+                consts.PLAYER_X: " Wygrywa Krzyżyk! ",
                 consts.DRAW: " Remis! "}
 
     SIZE_MEDIUM = 25
@@ -49,7 +49,6 @@ class Window:
 
     def __init__(self, controller):
         """TODO: add description here."""
-        Assets.load()
         self.surface = pygame.display.set_mode((consts.SURFACE_WIDTH, consts.SURFACE_HEIGHT))
         self.controller = controller
 
@@ -68,7 +67,8 @@ class Window:
                 return False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 click_position = pygame.mouse.get_pos()
-                self.controller.mouse_click(click_position)
+                field_number = self.calculate_field_number(click_position)
+                self.controller.handle_mouse_click(field_number)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     pygame.quit()
@@ -78,11 +78,11 @@ class Window:
 
         return True
 
-    def add_checker(self, field, player):
+    def add_checker(self, field_number, player):
         """TODO: add description here."""
-        self.surface.blit({consts.PLAYER_1: Assets.O_CHECKER_IMG,
-                           consts.PLAYER_2: Assets.X_CHECKER_IMG}[player],
-                          consts.FIELDS_COORDINATES[field])
+        self.surface.blit({consts.PLAYER_O: Assets.O_CHECKER_IMG,
+                           consts.PLAYER_X: Assets.X_CHECKER_IMG}[player],
+                          consts.FIELDS_COORDINATES[field_number])
         pygame.display.flip()
 
     @staticmethod
@@ -108,17 +108,17 @@ class Window:
         self.surface.blit(Assets.BACKGROUND_IMG, (0, 0))
         self.update_instruction()
 
-    def update_instruction(self, current_player=consts.PLAYER_1):
+    def update_instruction(self, current_player=consts.PLAYER_O):
         """TODO: add description here."""
         pygame.draw.rect(self.surface, Text.BACKGROUND_COLOR,
                          (0, consts.SURFACE_WIDTH, consts.BOARD_HEIGHT, consts.SURFACE_HEIGHT))
-        text = Text.INSTRUCTION[current_player]
+        text = Text.INSTRUCTIONS[current_player]
         self.draw_text(text, Text.SIZE_MEDIUM, consts.TEXT_AREA_CENTER)
         pygame.display.flip()
 
-    def end_game_text(self, result):
+    def end_game_text(self, game_result):
         """TODO: add description here."""
-        text = Text.END_GAME[result]
+        text = Text.END_GAME[game_result]
         self.draw_text(text, Text.SIZE_BIG, consts.BOARD_CENTER)
         pygame.display.flip()
 
