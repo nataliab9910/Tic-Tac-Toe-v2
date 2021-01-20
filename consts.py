@@ -1,6 +1,13 @@
 """Contains all constants used in project."""
 
-# pylint: disable=C0301,W0511
+# main game constants
+NO_PLAYER, PLAYER_O, PLAYER_X, DRAW = range(4)
+TEXT_AREA = 9
+WRONG = -1
+
+BOARD = [NO_PLAYER, NO_PLAYER, NO_PLAYER,
+         NO_PLAYER, NO_PLAYER, NO_PLAYER,
+         NO_PLAYER, NO_PLAYER, NO_PLAYER]
 
 GAME_TITLE = 'TIC-TAC-TOE Game!'
 
@@ -20,15 +27,6 @@ BOARD_CENTER = (SURFACE_WIDTH / 2, BOARD_HEIGHT / 2)
 # board fields
 FIELDS_IN_COLUMN = FIELDS_IN_ROW = 3
 NUMBER_OF_FIELDS = FIELDS_IN_COLUMN * FIELDS_IN_ROW
-
-# main game constants
-NO_PLAYER, PLAYER_O, PLAYER_X, DRAW = range(4)
-TEXT_AREA = 9
-WRONG = -1
-
-BOARD = [NO_PLAYER, NO_PLAYER, NO_PLAYER,
-         NO_PLAYER, NO_PLAYER, NO_PLAYER,
-         NO_PLAYER, NO_PLAYER, NO_PLAYER]
 
 # @formatter:off
 FIELDS_COORDINATES = [(0, 0),               (FIELD_LINE, 0),                (2 * FIELD_LINE, 0),

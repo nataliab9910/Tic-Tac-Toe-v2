@@ -1,8 +1,5 @@
 """Game logic."""
 
-# pylint: disable=W0511
-# pylint: disable=E1101
-
 import consts
 
 
@@ -14,17 +11,17 @@ class Logic:
         self.board = consts.BOARD[:]
         self.current_player = consts.PLAYER_O
 
-    def print_board(self):
-        """Prints game board on terminal.
-
-        Used to find bugs.
-        """
-        for i in range(3):
-            print(f' {self.board[3 * i]} | '
-                  f'{self.board[1 + 3 * i]} | '
-                  f'{self.board[2 + 3 * i]}')
-            if i < 2:
-                print('---+---+---')
+    # def print_board(self):
+    #     """Prints game board on terminal.
+    #
+    #     Used to find bugs.
+    #     """
+    #     for i in range(3):
+    #         print(f' {self.board[3 * i]} | '
+    #               f'{self.board[1 + 3 * i]} | '
+    #               f'{self.board[2 + 3 * i]}')
+    #         if i < 2:
+    #             print('---+---+---')
 
     def flip_current_player(self):
         """Changes current player to opposite."""

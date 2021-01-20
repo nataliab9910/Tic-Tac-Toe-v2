@@ -44,9 +44,9 @@ class GameController:
         """Sets new game state."""
         self.game_state = new_state
 
-    def handle_mouse_click(self, field_number):
+    def handle_mouse_click(self, clicked_field):
         """Handles mouse click respectively to actual game state."""
-        self.game_state.mouse_click_reaction(field_number)
+        self.game_state.mouse_click_reaction(clicked_field)
 
     def handle_move(self, field_number):
         """Handles click on given field."""
