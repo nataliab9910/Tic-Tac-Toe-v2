@@ -160,7 +160,7 @@ class LogicTest(unittest.TestCase):
                             consts.PLAYER_O, consts.PLAYER_X, consts.NO_PLAYER]
         self.logic.current_player = consts.PLAYER_X
         self.logic.reset()
-        self.assertEquals(self.logic.board, consts.BOARD)
+        self.assertEqual(self.logic.board, consts.BOARD)
         self.assertEqual(self.logic.current_player, consts.PLAYER_O)
 
 
