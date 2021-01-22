@@ -163,6 +163,14 @@ class LogicTest(unittest.TestCase):
         self.assertEqual(self.logic.board, consts.BOARD)
         self.assertEqual(self.logic.current_player, consts.PLAYER_O)
 
+        self.logic.board = [consts.PLAYER_X, consts.PLAYER_O, consts.PLAYER_O,
+                            consts.PLAYER_X, consts.PLAYER_O, consts.PLAYER_O,
+                            consts.PLAYER_O, consts.PLAYER_X, consts.PLAYER_X]
+        self.logic.current_player = consts.PLAYER_X
+        self.logic.reset()
+        self.assertEqual(self.logic.board, consts.BOARD)
+        self.assertEqual(self.logic.current_player, consts.PLAYER_O)
+
 
 if __name__ == '__main__':
     unittest.main()
