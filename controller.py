@@ -69,6 +69,7 @@ class GameController:
         """Sets default settings."""
         self.window.reset()
         self.logic.reset()
+        self.set_game_state(GameInProgress(self))
 
     def flip_players(self):
         """Changes current player to opposite."""
@@ -120,8 +121,6 @@ class GameEnded(GameState):
         """Restarts game if ext area is choosen."""
         if field_number == consts.TEXT_AREA:
             self.game_controller.reset_game()
-            self.game_controller.set_game_state(GameInProgress(self.game_controller))
-            # self.game_controller.game_state = self.game_controller.continue_game_state
 
     def window_update(self, game_evaluation):
         """Changes instruction in text area and shows end game instruction in the middle of the board."""
